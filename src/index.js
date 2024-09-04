@@ -1,7 +1,15 @@
 // 切换侧边栏伸缩
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
+  // 当搜索时给侧边栏添加一个类名，用于隐藏侧边栏
   sidebar.classList.toggle("collapsed");
+  // 切换箭头方向
+  const toggleButton = document.querySelector(".toggle-button");
+  if (sidebar.classList.contains("collapsed")) {
+    toggleButton.innerHTML = "&#10095;"; // 右箭头
+  } else {
+    toggleButton.innerHTML = "&#10094;"; // 左箭头
+  }
 }
 
 // 页面切换功能
