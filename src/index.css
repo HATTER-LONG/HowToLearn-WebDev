@@ -45,6 +45,7 @@ body {
   align-items: center; /* 子元素垂直居中 */
   padding: 10px 0; /* 设置内边距，使用盒子模型 */
   white-space: nowrap; /* 防止文本换行 */
+  user-select: none; /* 禁止文本选择 */
 }
 
 .nav-item:hover {
@@ -110,10 +111,10 @@ body {
   font-weight: bold; /* 设置字体加粗 */
 }
 
-.page {
-  display: none; /* 隐藏页面 */
+/* .page {
+  display: none; 隐藏页面
 }
 
 .page.active {
-  display: block; /* 显示页面 */
-}
+  display: block; 显示页面
+} */

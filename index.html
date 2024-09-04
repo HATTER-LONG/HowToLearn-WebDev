@@ -20,16 +20,16 @@
         LOGO
         <span class="app-name">APP NAME</span>
       </div>
-      <div class="nav-item" onclick="switchPage('home')">
+      <div class="nav-item" onclick="loadPage('home.html')">
         <!-- 标签中的 id 与 class 可以用于 CSS 与 JS 选择器定位元素 -->
         <div class="icon">M</div>
         <div class="nav-text">HOME</div>
       </div>
-      <div class="nav-item" onclick="switchPage('page1')">
+      <div class="nav-item" onclick="loadPage('page1.html')">
         <div class="icon">A</div>
         <div class="nav-text">PAGE 1</div>
       </div>
-      <div class="nav-item" onclick="switchPage('page2')">
+      <div class="nav-item" onclick="loadPage('page2.html')">
         <div class="icon">B</div>
         <div class="nav-text">PAGE 2</div>
       </div>
@@ -46,9 +46,6 @@
       <div id="content-area" class="content-area">
         <!-- 块级元素，用于布局 -->
         <!-- 默认显示首页 -->
-        <div id="home" class="page active">HOME</div>
-        <div id="page1" class="page">PAGE 1</div>
-        <div id="page2" class="page">PAGE 2</div>
       </div>
     </div>
 
