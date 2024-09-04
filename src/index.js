@@ -1,44 +1,26 @@
-import './index.css';
-import { createStore } from 'tinybase';
+// 切换侧边栏伸缩
+function toggleSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  sidebar.classList.toggle("collapsed");
+}
 
-// Convenience function for attaching an action to a button
-const onClick = (id, onClick) =>
-  document.getElementById(id).addEventListener('click', onClick);
+// 页面切换功能
+function switchPage(pageId) {
+  // 隐藏所有页面
+  document
+    .querySelectorAll(".page")
+    .forEach((page) => page.classList.remove("active"));
 
-// Convenience function for writing out pretty JSON into an element
-const updateJson = (id, content) =>
-  (document.getElementById(id).innerText = JSON.stringify(content, null, 2));
+  // 显示选中的页面
+  document.getElementById(pageId).classList.add("active");
 
-// Convenience function for generating a random integer
-const getRandom = (max = 100) => Math.floor(Math.random() * max);
-
-addEventListener('load', () => {
-  // Create the TinyBase Store
-  const store = createStore();
-
-  // Attach events to the buttons to mutate the data in the TinyBase Store
-  onClick('countButton', () => store.setValue('counter', (value) => value + 1));
-  onClick('randomButton', () => store.setValue('random', getRandom()));
-  onClick('addPetButton', () =>
-    store.addRow('pets', {
-      name: ['fido', 'felix', 'bubbles', 'lowly', 'polly'][getRandom(5)],
-      species: store.getRowIds('species')[getRandom(5)],
-    })
-  );
-
-  // Bind listeners to all Values and Tables in the Store to print the content
-  store.addValuesListener(() => updateJson('valuesJson', store.getValues()));
-  store.addTablesListener(() => updateJson('tablesJson', store.getTables()));
-
-  // Initialize the Store's data
-  store
-    .setValue('counter', 0)
-    .setRow('pets', '0', { name: 'fido', species: 'dog' })
-    .setTable('species', {
-      dog: { price: 5 },
-      cat: { price: 4 },
-      fish: { price: 2 },
-      worm: { price: 1 },
-      parrot: { price: 3 },
-    });
-});
+  // 更新页面标题
+  const pageTitle = document.querySelector(".page-title");
+  if (pageId === "home") {
+    pageTitle.textContent = "HOME";
+  } else if (pageId === "page1") {
+    pageTitle.textContent = "PAGE 1";
+  } else if (pageId === "page2") {
+    pageTitle.textContent = "PAGE 2";
+  }
+}

@@ -1,39 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap"
-    />
-    <title>A TinyBase App</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>可伸缩侧边栏界面</title>
+    <link rel="stylesheet" href="./src/index.css" />
   </head>
   <body>
-    <div id="app">
-      <header>
-        <h1>
-          <img src="/favicon.svg" />
-          TinyBase
-        </h1>
-      </header>
-      <div id="buttons">
-        <button id="countButton">Increment number</button>
-        <button id="randomButton">Random number</button>
-        <button id="addPetButton">Add a pet</button>
+    <!-- 侧边栏 -->
+    <div id="sidebar" class="sidebar">
+      <div class="logo">LOGO</div>
+      <div class="nav-item" onclick="switchPage('home')">
+        <div class="icon">ICON</div>
+        <div class="nav-text">HOME</div>
       </div>
-      <details open>
-        <summary>Values</summary>
-        <pre id="valuesJson"></pre>
-      </details>
-      <details open>
-        <summary>Tables</summary>
-        <pre id="tablesJson"></pre>
-      </details>
+      <div class="nav-item" onclick="switchPage('page1')">
+        <div class="icon">ICON</div>
+        <div class="nav-text">PAGE 1</div>
+      </div>
+      <div class="nav-item" onclick="switchPage('page2')">
+        <div class="icon">ICON</div>
+        <div class="nav-text">PAGE 2</div>
+      </div>
     </div>
-    <script type="module" src="/src/index.js"></script>
+
+    <!-- 主内容区 -->
+    <div class="main-content">
+      <div class="header">
+        <div class="toggle-button" onclick="toggleSidebar()">&#10094;</div>
+        <div class="page-title">PAGE TITLE</div>
+        <div class="user-info">user</div>
+      </div>
+      <div id="content-area" class="content-area">
+        <!-- 默认显示首页 -->
+        <div id="home" class="page active">HOME</div>
+        <div id="page1" class="page">PAGE 1</div>
+        <div id="page2" class="page">PAGE 2</div>
+      </div>
+    </div>
+
+    <script src="./src/index.js"></script>
   </body>
 </html>
