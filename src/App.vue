@@ -1,14 +1,15 @@
 <script setup>
-import { ref, onMounted } from "vue"
-import { useRouter } from "vue-router"
+import { ref, onMounted, watch } from "vue"
+import { useRoute, useRouter } from "vue-router"
 import { usePageStore } from "@/stores/pageStore"
-
+import Menu from "./components/Menu.vue"
 const isSidebarCollapsed = ref(false)
 const toggleButtonContent = ref("&#10094;") // 初始状态为左箭头
 const pageTitle = ref("")
 
 const pageStore = usePageStore()
 const router = useRouter()
+const route = useRoute()
 const loadPage = (page) => {
   console.log("load page:", page)
   if (page !== "Home") router.push("/" + page)
@@ -27,32 +28,18 @@ onMounted(() => {
   console.log("mounted")
   loadPage(pageStore.currentPage)
 })
+// 监听路由变化并更新 pageTitle
+watch(route, (newRoute) => {
+  console.log("route change", newRoute.name)
+  pageTitle.value = newRoute.name || ""
+})
 </script>
 
 <template>
   <body>
     <!-- 文档主体，包含内容 -->
     <!-- 侧边栏 -->
-    <div id="sidebar" :class="['sidebar', { collapsed: isSidebarCollapsed }]">
-      <!-- 块级元素，用于布局 -->
-      <div class="logo">
-        LOGO
-        <span class="app-name">APP NAME</span>
-      </div>
-      <div class="nav-item" @click="loadPage('Home')">
-        <!-- 标签中的 id 与 class 可以用于 CSS 与 JS 选择器定位元素 -->
-        <div class="icon">M</div>
-        <div class="nav-text">HOME</div>
-      </div>
-      <div class="nav-item" @click="loadPage('Page1')">
-        <div class="icon">A</div>
-        <div class="nav-text">PAGE 1</div>
-      </div>
-      <div class="nav-item" @click="loadPage('Page2')">
-        <div class="icon">B</div>
-        <div class="nav-text">PAGE 2</div>
-      </div>
-    </div>
+    <Menu :isCollapse="isSidebarCollapsed" />
 
     <!-- 主内容区 -->
     <div class="main-content">
@@ -77,70 +64,6 @@ body {
   font-family: Arial, sans-serif; /* 设置字体 */
   display: flex; /* 使用 Flexbox 布局 */
   height: 100vh; /* 设置高度为视口高度 */
-}
-
-/* 侧边栏样式 */
-.sidebar {
-  width: 200px; /* 设置宽度 */
-  background-color: #add8e6; /* 浅蓝色 */
-  padding: 20px; /* 设置内边距，使用盒子模型 */
-  padding-left: 1px; /* 设置左侧内边距为 1px */
-  padding-right: 1px; /* 设置右侧内边距为 1px */
-  box-sizing: border-box; /* 包括内边距和边框在内的总宽度 */
-  display: flex; /* 使用 Flexbox 布局 */
-  flex-direction: column; /* 垂直排列子元素 */
-  transition: width 0.3s; /* 宽度变化时的过渡效果 */
-}
-
-.sidebar.collapsed {
-  width: 50px; /* 设置宽度为 50px */
-}
-
-.logo {
-  font-weight: bold; /* 设置字体加粗 */
-  margin-bottom: 20px; /* 设置底部外边距 */
-  text-align: center; /*文本居中 */
-  white-space: nowrap; /* 防止文本换行，使得收缩更加平滑 */
-  display: flex; /* 确保 logo 和 logo-name 在同一行 */
-}
-.sidebar .logo .app-name {
-  display: flex;
-  flex: 1;
-  display: inline; /* 行内元素显示 */
-}
-
-.sidebar.collapsed .logo .app-name {
-  display: none; /* 隐藏元素 */
-}
-
-.nav-item {
-  display: flex; /* 使用 Flexbox 布局 */
-  align-items: center; /* 子元素垂直居中 */
-  padding: 10px 0; /* 设置内边距，使用盒子模型 */
-  white-space: nowrap; /* 防止文本换行 */
-  user-select: none; /* 禁止文本选择 */
-}
-
-.nav-item:hover {
-  background-color: #d3d3d3; /* 鼠标悬停时的背景颜色 */
-}
-
-.icon {
-  width: 30px; /* 设置宽度 */
-  height: 30px; /* 设置高度 */
-  background-color: #c0c0c0; /* 灰色 */
-  margin-right: 10px; /* 设置右侧外边距 */
-  margin-left: 10px; /* 设置右侧外边距 */
-}
-
-.nav-text {
-  flex: 1; /* 占据剩余空间 */
-  transition: opacity 0.5s, display 0.3s; /* 透明度变化时的过渡效果 */
-}
-
-.sidebar.collapsed .nav-text {
-  opacity: 0; /* 设置透明度为 0 */
-  display: none;
 }
 
 /* 主内容区样式 */

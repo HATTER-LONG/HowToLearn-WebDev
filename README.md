@@ -41,3 +41,5 @@ npm run build
 5. 使用 Router 实现页面切换。
 
 6. 使用 pinia 保存数据。
+
+7. 侧边栏使用 Element-Plus 实现。
