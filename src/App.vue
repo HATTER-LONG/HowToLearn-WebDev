@@ -1,15 +1,15 @@
 <script setup>
 import { ref } from "vue"
-import Home from "@/components/Home.vue"
-import Page1 from "@/components/Page1.vue"
-import Page2 from "@/components/Page2.vue"
-const currentPage = ref("Home")
+// import router from "@/router"
+import { useRouter, useRoute } from "vue-router"
 const isSidebarCollapsed = ref(false)
 const toggleButtonContent = ref("&#10094;") // 初始状态为左箭头
 const pageTitle = ref("")
+const router = useRouter()
 const loadPage = (page) => {
   console.log("load page:", page)
-  currentPage.value = page
+  if (page !== "Home") router.push("/" + page)
+  else router.push("/")
   pageTitle.value = page
 }
 
@@ -56,16 +56,13 @@ const toggleSidebar = () => {
       <div id="content-area" class="content-area">
         <!-- 块级元素，用于布局 -->
         <!-- 默认显示首页 -->
-        <div v-if="currentPage === 'Home'"><Home /></div>
-        <div v-else-if="currentPage === 'Page1'"><Page1 /></div>
-        <div v-else-if="currentPage === 'Page2'"><Page2 /></div>
+        <router-view />
       </div>
     </div>
   </body>
 </template>
 
 <style scoped>
-/* 全局样式 */
 body {
   margin: 0; /* 移除默认外边距 */
   font-family: Arial, sans-serif; /* 设置字体 */
