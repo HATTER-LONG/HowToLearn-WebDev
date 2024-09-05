@@ -6,9 +6,11 @@ import Page2 from "@/components/Page2.vue"
 const currentPage = ref("Home")
 const isSidebarCollapsed = ref(false)
 const toggleButtonContent = ref("&#10094;") // 初始状态为左箭头
+const pageTitle = ref("")
 const loadPage = (page) => {
   console.log("load page:", page)
   currentPage.value = page
+  pageTitle.value = page
 }
 
 const toggleSidebar = () => {
@@ -48,7 +50,7 @@ const toggleSidebar = () => {
       <!-- 块级元素，用于布局 -->
       <div class="header">
         <div class="toggle-button" @click="toggleSidebar()" v-html="toggleButtonContent"></div>
-        <div class="page-title">PAGE TITLE</div>
+        <div class="page-title">{{ pageTitle }}</div>
         <div class="user-info">user</div>
       </div>
       <div id="content-area" class="content-area">
