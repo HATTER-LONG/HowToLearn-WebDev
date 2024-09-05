@@ -77,7 +77,7 @@ body {
   display: flex; /* 使用 Flexbox 布局 */
   justify-content: space-between; /* 子元素两端对齐 */
   align-items: center; /* 子元素垂直居中 */
-  background-color: #90ee90; /* 浅绿色 */
+  background-color: #fafafa; /* 浅绿色 */
   padding: 10px; /* 设置内边距，使用盒子模型 */
   box-sizing: border-box; /* 包括内边距和边框在内的总宽度 */
 }
@@ -99,7 +99,7 @@ body {
 
 .content-area {
   flex: 1; /* 占据剩余空间 */
-  background-color: #ffff99; /* 浅黄色 */
+  background-color: #e7e7e5; /* 浅黄色 */
   display: flex; /* 使用 Flexbox 布局 */
   justify-content: center; /* 子元素水平居中 */
   align-items: center; /* 子元素垂直居中 */
