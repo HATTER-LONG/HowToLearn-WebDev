@@ -1,55 +1,13 @@
 <!DOCTYPE html>
-<!-- 文档类型声明 -->
-<html lang="zh-CN">
-  <!-- 根元素 -->
+<html lang="en">
   <head>
-    <!-- 文档头部，包含元数据，标题 -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- 文档标题 -->
-    <title>可伸缩侧边栏界面</title>
-    <!-- 引入外部资源，加载 css 样式 -->
-    <link rel="stylesheet" href="./src/index.css" />
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite App</title>
   </head>
   <body>
-    <!-- 文档主体，包含内容 -->
-    <!-- 侧边栏 -->
-    <div id="sidebar" class="sidebar">
-      <!-- 块级元素，用于布局 -->
-      <div class="logo">
-        LOGO
-        <span class="app-name">APP NAME</span>
-      </div>
-      <div class="nav-item" onclick="loadPage('home.html')">
-        <!-- 标签中的 id 与 class 可以用于 CSS 与 JS 选择器定位元素 -->
-        <div class="icon">M</div>
-        <div class="nav-text">HOME</div>
-      </div>
-      <div class="nav-item" onclick="loadPage('page1.html')">
-        <div class="icon">A</div>
-        <div class="nav-text">PAGE 1</div>
-      </div>
-      <div class="nav-item" onclick="loadPage('page2.html')">
-        <div class="icon">B</div>
-        <div class="nav-text">PAGE 2</div>
-      </div>
-    </div>
-
-    <!-- 主内容区 -->
-    <div class="main-content">
-      <!-- 块级元素，用于布局 -->
-      <div class="header">
-        <div class="toggle-button" onclick="toggleSidebar()">&#10094;</div>
-        <div class="page-title">PAGE TITLE</div>
-        <div class="user-info">user</div>
-      </div>
-      <div id="content-area" class="content-area">
-        <!-- 块级元素，用于布局 -->
-        <!-- 默认显示首页 -->
-      </div>
-    </div>
-
-    <script src="./src/index.js"></script>
-    <!-- 引入外部脚本，加载 js 代码 -->
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
