@@ -1,16 +1,20 @@
 <script setup>
-import { ref } from "vue"
-// import router from "@/router"
-import { useRouter, useRoute } from "vue-router"
+import { ref, onMounted } from "vue"
+import { useRouter } from "vue-router"
+import { usePageStore } from "@/stores/pageStore"
+
 const isSidebarCollapsed = ref(false)
 const toggleButtonContent = ref("&#10094;") // 初始状态为左箭头
 const pageTitle = ref("")
+
+const pageStore = usePageStore()
 const router = useRouter()
 const loadPage = (page) => {
   console.log("load page:", page)
   if (page !== "Home") router.push("/" + page)
   else router.push("/")
   pageTitle.value = page
+  pageStore.setPage(page)
 }
 
 const toggleSidebar = () => {
@@ -18,6 +22,11 @@ const toggleSidebar = () => {
   toggleButtonContent.value = isSidebarCollapsed.value ? "&#10095;" : "&#10094;" // 根据状态更新箭头方向
   console.log("toggle sidebar", isSidebarCollapsed.value)
 }
+
+onMounted(() => {
+  console.log("mounted")
+  loadPage(pageStore.currentPage)
+})
 </script>
 
 <template>
