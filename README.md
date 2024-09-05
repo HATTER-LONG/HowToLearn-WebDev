@@ -31,3 +31,5 @@ npm run build
 ## Commit
 
 1. 使用 vue 重新创建项目。
+
+2. 移植基础环境组件。
