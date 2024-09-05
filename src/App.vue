@@ -4,14 +4,17 @@ import Home from "@/components/Home.vue"
 import Page1 from "@/components/Page1.vue"
 import Page2 from "@/components/Page2.vue"
 const currentPage = ref("Home")
-
+const isSidebarCollapsed = ref(false)
+const toggleButtonContent = ref("&#10094;") // 初始状态为左箭头
 const loadPage = (page) => {
   console.log("load page:", page)
   currentPage.value = page
 }
 
 const toggleSidebar = () => {
-  console.log("toggle sidebar")
+  isSidebarCollapsed.value = !isSidebarCollapsed.value
+  toggleButtonContent.value = isSidebarCollapsed.value ? "&#10095;" : "&#10094;" // 根据状态更新箭头方向
+  console.log("toggle sidebar", isSidebarCollapsed.value)
 }
 </script>
 
@@ -19,7 +22,7 @@ const toggleSidebar = () => {
   <body>
     <!-- 文档主体，包含内容 -->
     <!-- 侧边栏 -->
-    <div id="sidebar" class="sidebar">
+    <div id="sidebar" :class="['sidebar', { collapsed: isSidebarCollapsed }]">
       <!-- 块级元素，用于布局 -->
       <div class="logo">
         LOGO
@@ -44,7 +47,7 @@ const toggleSidebar = () => {
     <div class="main-content">
       <!-- 块级元素，用于布局 -->
       <div class="header">
-        <div class="toggle-button" onclick="toggleSidebar()">&#10094;</div>
+        <div class="toggle-button" @click="toggleSidebar()" v-html="toggleButtonContent"></div>
         <div class="page-title">PAGE TITLE</div>
         <div class="user-info">user</div>
       </div>
