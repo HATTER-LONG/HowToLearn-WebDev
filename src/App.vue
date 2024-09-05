@@ -1,9 +1,16 @@
 <script setup>
-let loadPage = (page) => {
+import { ref } from "vue"
+import Home from "@/components/Home.vue"
+import Page1 from "@/components/Page1.vue"
+import Page2 from "@/components/Page2.vue"
+const currentPage = ref("Home")
+
+const loadPage = (page) => {
   console.log("load page:", page)
+  currentPage.value = page
 }
 
-let toggleSidebar = () => {
+const toggleSidebar = () => {
   console.log("toggle sidebar")
 }
 </script>
@@ -18,16 +25,16 @@ let toggleSidebar = () => {
         LOGO
         <span class="app-name">APP NAME</span>
       </div>
-      <div class="nav-item" @click="loadPage('home.html')">
+      <div class="nav-item" @click="loadPage('Home')">
         <!-- 标签中的 id 与 class 可以用于 CSS 与 JS 选择器定位元素 -->
         <div class="icon">M</div>
         <div class="nav-text">HOME</div>
       </div>
-      <div class="nav-item" @click="loadPage('page1.html')">
+      <div class="nav-item" @click="loadPage('Page1')">
         <div class="icon">A</div>
         <div class="nav-text">PAGE 1</div>
       </div>
-      <div class="nav-item" @click="loadPage('page2.html')">
+      <div class="nav-item" @click="loadPage('Page2')">
         <div class="icon">B</div>
         <div class="nav-text">PAGE 2</div>
       </div>
@@ -44,6 +51,9 @@ let toggleSidebar = () => {
       <div id="content-area" class="content-area">
         <!-- 块级元素，用于布局 -->
         <!-- 默认显示首页 -->
+        <div v-if="currentPage === 'Home'"><Home /></div>
+        <div v-else-if="currentPage === 'Page1'"><Page1 /></div>
+        <div v-else-if="currentPage === 'Page2'"><Page2 /></div>
       </div>
     </div>
   </body>

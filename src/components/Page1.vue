@@ -1,0 +1,18 @@
+<script setup>
+const calculate = () => {
+  console.log("calculate")
+  const num1 = parseFloat(document.getElementById("num1").value)
+  const num2 = parseFloat(document.getElementById("num2").value)
+  const result = num1 - num2
+  document.getElementById("result").textContent = "结果: " + result
+}
+</script>
+
+<template>
+  <div class="calculator">
+    <input type="number" id="num1" placeholder="输入第一个数" />
+    <input type="number" id="num2" placeholder="输入第二个数" />
+    <button @click="calculate()">计算减法</button>
+    <div class="result" id="result"></div>
+  </div>
+</template>
